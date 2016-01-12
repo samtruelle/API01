@@ -16,16 +16,16 @@ public class User {
 	@Column(name = "id")
 	private Integer id;
 	
-	@Column(name="password")
+	@Column(name="password",nullable=false)
 	private String password;
 	
-	@Column(name="email")
+	@Column(name="email",unique=true,nullable=false)
 	private String email;
 	
-	@Column(name="first_name")
+	@Column(name="first_name",nullable=false)
 	private String firstName;
 	
-	@Column(name="last_name")
+	@Column(name="last_name",nullable=false)
 	private String lastName;
 	
 	@Column(name="adress")
@@ -37,16 +37,16 @@ public class User {
 	@Column(name="creation_date")
 	private Date creationDate;
 	
+	@Column(name="admin")
+	private boolean admin;   
+	
 	@Column(name="account")
 	private boolean account;
-	
-	@Column(name="admin")
-	private boolean admin;
 	
 	public User(){};
 	
 	public User(String password, String email, String firstName, String lastName, String adress, int telephone,
-			Date creationDate, boolean account, boolean admin) {
+			Date creationDate, boolean admin, boolean account) {
 		super();
 		this.password = password;
 		this.email = email;
@@ -55,10 +55,18 @@ public class User {
 		this.adress = adress;
 		this.telephone = telephone;
 		this.creationDate = creationDate;
-		this.account = account;
 		this.admin = admin;
+		this.account = account;
 	}
 	
+	public boolean isAccount() {
+		return account;
+	}
+
+	public void setAccount(boolean account) {
+		this.account = account;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -121,11 +129,5 @@ public class User {
 		this.id = id;
 	}
 
-	public boolean isAccount() {
-		return account;
-	}
-	public void setAccount(boolean account) {
-		this.account = account;
-	}
 }
 
