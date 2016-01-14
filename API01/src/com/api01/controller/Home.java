@@ -20,7 +20,7 @@ public class Home {
 	public ModelAndView showMessage() {		
 		System.out.println("from controller");
 		Date date = new Date();
-		User u = new User("hello","mail","Steve", "BUNLON", "adresse", 2,  date, true, true);
+		User u = new User("hello","mail","Steve", "BUNLON", "adresse", 2,  date, 1, 1);
 		userdaoimpl.addUser(u);
 		return new ModelAndView("hello", "message", message);
 	}

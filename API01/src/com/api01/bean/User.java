@@ -13,8 +13,8 @@ import javax.persistence.GeneratedValue;
 public class User {
 	@Id
 	@GeneratedValue
-	@Column(name = "id")
-	private Integer id;
+	@Column(name = "user_id")
+	private Integer user_id;
 	
 	@Column(name="password",nullable=false)
 	private String password;
@@ -28,8 +28,8 @@ public class User {
 	@Column(name="last_name",nullable=false)
 	private String lastName;
 	
-	@Column(name="adress")
-	private String adress;
+	@Column(name="adresse")
+	private String adresse;
 	
 	@Column(name="telephone")
 	private int telephone;
@@ -37,43 +37,43 @@ public class User {
 	@Column(name="creation_date")
 	private Date creationDate;
 	
-	@Column(name="admin")
-	private boolean admin;   
+	@Column(name="account_blocked")
+	private int account_blocked;
 	
-	@Column(name="account")
-	private boolean account;
+	@Column(name="admin")
+	private int admin;   	
 	
 	public User(){};
 	
-	public User(String password, String email, String firstName, String lastName, String adress, int telephone,
-			Date creationDate, boolean admin, boolean account) {
+	public User(String password, String email, String firstName, String lastName, String adresse, int telephone,
+			Date creationDate, int admin, int account_blocked) {
 		super();
 		this.password = password;
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.adress = adress;
+		this.adresse = adresse;
 		this.telephone = telephone;
 		this.creationDate = creationDate;
 		this.admin = admin;
-		this.account = account;
+		this.account_blocked = account_blocked;
 	}
 	
-	public boolean isAccount() {
-		return account;
+	public int isAccount() {
+		return account_blocked;
 	}
 
-	public void setAccount(boolean account) {
-		this.account = account;
+	public void setAccount(int account) {
+		this.account_blocked = account;
 	}
 
 	public Integer getId() {
-		return id;
+		return user_id;
 	}
-	public boolean isAdmin() {
+	public int isAdmin() {
 		return admin;
 	}
-	public void setAdmin(boolean admin) {
+	public void setAdmin(int admin) {
 		this.admin = admin;
 	}
 	public String getPassword() {
@@ -88,11 +88,11 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}	
-	public String getAdress() {
-		return adress;
+	public String getadresse() {
+		return adresse;
 	}
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setadresse(String adresse) {
+		this.adresse = adresse;
 	}
 	public int getTelephone() {
 		return telephone;
@@ -126,7 +126,7 @@ public class User {
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.user_id = id;
 	}
 
 }
