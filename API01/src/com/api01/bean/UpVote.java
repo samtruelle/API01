@@ -26,9 +26,13 @@ public class UpVote {
 	@Column(name="value",nullable=false)
 	private Integer value;
 	
+	@ManyToOne
+	@JoinColumn(name="user_id")
 	@Column(name="user",nullable=false)
 	private Integer user;
 	
+	@ManyToOne
+	@JoinColumn(name="idea_id")
 	@Column(name="idea",nullable=false)
 	private Integer idea;
 	

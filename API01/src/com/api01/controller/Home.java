@@ -1,6 +1,8 @@
 package com.api01.controller;
 
 import java.util.Date;
+
+
 import com.api01.dao.UserDaoImpl;
 import com.api01.bean.User;
 import org.springframework.stereotype.Controller;
@@ -21,7 +23,18 @@ public class Home {
 		System.out.println("from controller");
 		Date date = new Date();
 		User u = new User("hello","mail","Steve", "BUNLON", "adresse", 2,  date, 1, 1);
-		userdaoimpl.addUser(u);
+		User u2 = new User("hello","email","Steve", "BUNLON", "adresse", 2,  date, 1, 1);
+
+		System.out.println(userdaoimpl.getUserById(userdaoimpl.addUser(u)).getFirstName());
+		 
+		userdaoimpl.addUser(u2);
+		
+		userdaoimpl.removerUser(u);
+		u2.setFirstName("ca marche");
+		userdaoimpl.updateUser(u2);
+		
+		System.out.println(userdaoimpl.getUserByMail("email").getFirstName());
+		
 		return new ModelAndView("hello", "message", message);
 	}
 }

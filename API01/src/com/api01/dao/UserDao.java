@@ -1,15 +1,27 @@
 package com.api01.dao;
-
 import com.api01.bean.User;
+
+import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
-
 public interface UserDao {
 	@Transactional
-	public int addUser(User u);
+	int addUser(User u);
+	
+	@Transactional
+	int updateUser(User u);
+	
+	@Transactional
+	void removerUser(User u);
+	
+	@Transactional
+	User getUserById(Integer id);
+	
+	@Transactional
+	List<User> getUsers();
+
+	@Transactional
+	User getUserByMail(String mail);
+	
 }
