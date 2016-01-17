@@ -10,9 +10,11 @@ import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.api01.bean.Idea;
+import com.api01.bean.User;
 
 /**
  * @author samuel
@@ -148,6 +150,28 @@ public class IdeaDaoImpl implements IIdeaDao {
 			}
 		}
 		return ideas;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Idea> getIdeaByUser(User u) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+
+		Criteria criteria = null;
+		List<Idea> idea = null;
+		try {
+			criteria = session.createCriteria(Idea.class);
+			idea = (List<Idea>) criteria.add(Restrictions.eq("user", u)).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				tx.commit();
+				session.close();
+			}
+		}
+		return idea;
 	}
 
 }

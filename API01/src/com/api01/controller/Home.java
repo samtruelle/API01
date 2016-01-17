@@ -40,15 +40,17 @@ public class Home {
 		
 		User u1 = new User("password", "email", "firstName", "lastName", "adress", 6, new Date(), 1, 0);
 		User u2 = new User("password", "email2", "firstName", "lastName", "adress", 5, new Date(),0, 0);
-		Idea i1 = new Idea("description", "application", "targeted_market", 120.0, EnumState.proposal, "long_summary");
-		Idea i2 = new Idea("description", "application", "targeted_market", 100.0, EnumState.evaluation, "long_summary");
-		Idea i3 = new Idea("description", "application", "targeted_market", 150.0, EnumState.discussion, "long_summary");
+		Idea i1 = new Idea("description", "application", "targeted_market", 120.0, EnumState.proposal, "long_summary",u1);
+		Idea i2 = new Idea("description", "application", "targeted_market", 100.0, EnumState.evaluation, "long_summary",u1);
+		Idea i3 = new Idea("description", "application", "targeted_market", 150.0, EnumState.discussion, "long_summary",u2);
 		
 		userdaoimpl.addUser(u1);
 		userdaoimpl.addUser(u2);
 		ideaDaoImpl.addIdea(i1);
 		ideaDaoImpl.addIdea(i2);
 		ideaDaoImpl.addIdea(i3);
+		
+		System.out.println(ideaDaoImpl.getIdeaByUser(u1));
 		
 		UpVote uv1 = new UpVote(1, u1, i1);
 		UpVote uv2 = new UpVote(1, u2, i2);

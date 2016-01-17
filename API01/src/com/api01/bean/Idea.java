@@ -6,6 +6,8 @@ package com.api01.bean;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 
@@ -44,12 +46,30 @@ public class Idea {
 
 	@Column(name = "long_summary")
 	private String long_summary;
+	
+	@ManyToOne
+	@JoinColumn(name="user",nullable=false)
+	private User user;
+
+	/**
+	 * @return the user
+	 */
+	public User getUser() {
+		return user;
+	}
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public Idea() {
 	};
 
 	public Idea(String description, String application, String targeted_market, 
-			Double fund, EnumState state, String long_summary) {
+			Double fund, EnumState state, String long_summary, User u) {
 		super();
 		this.description = description;
 		this.application = application;
@@ -57,6 +77,7 @@ public class Idea {
 		this.fund = fund;
 		this.state = state;
 		this.long_summary = long_summary;
+		this.user = u;
 	}
 
 	/**
