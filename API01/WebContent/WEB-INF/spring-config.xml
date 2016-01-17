@@ -15,7 +15,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/api01_db" />
 		<property name="username" value="root" />
-		<property name="password" value="Se3MaCa9Sa" />
+		<property name="password" value="root" />
 	</bean>
 
 	<bean id="sessionFactory"
