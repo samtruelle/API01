@@ -56,6 +56,15 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
+	
+	<mvc:interceptors>
+      <bean class="com.api01.filter.TestRights" />
+    </mvc:interceptors>
+    
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:default-servlet-handler />
+	<mvc:annotation-driven />
+	
 	<bean id="userdaoimpl" class="com.api01.dao.UserDaoImpl" />
 	<bean id="ideadaoimpl" class="com.api01.dao.IdeaDaoImpl" />
 	<bean id="upvotedaoimpl" class="com.api01.dao.UpVoteDaoImpl" />
