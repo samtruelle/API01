@@ -12,7 +12,7 @@ public class TestRights implements HandlerInterceptor  {
     @Override
     public boolean preHandle(HttpServletRequest request,
             HttpServletResponse response, Object handler) throws Exception {    	
-	    HttpServletRequest httpRequest = (HttpServletRequest)request;
+	    /*HttpServletRequest httpRequest = (HttpServletRequest)request;
 		HttpSession session = httpRequest.getSession();	
 		String url = httpRequest.getRequestURL().toString();
 		Integer isAdmin = (Integer)session.getAttribute("admin");
@@ -43,7 +43,7 @@ public class TestRights implements HandlerInterceptor  {
 				rd.forward(request, response);
 				return false;
 			}
-		}						
+		}	*/					
 		return true;
     }
      
