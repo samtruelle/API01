@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.api01.bean.User;
 
-public class UserDaoImpl implements UserDao {
+public class UserDaoImpl implements IUserDao {
 
 	@Autowired
 	SessionFactory sessionFactory;
@@ -28,6 +28,7 @@ public class UserDaoImpl implements UserDao {
 		session.saveOrUpdate(u);
 		tx.commit();
 		Serializable id = session.getIdentifier(u);
+		u.setUser_id((Integer)id);
 		session.close();
 		return (Integer) id;
 	}
@@ -73,17 +74,17 @@ public class UserDaoImpl implements UserDao {
 		}
 		return user;
 	}
-	
+
 	@Transactional
 	@Override
 	public User getUserByMail(String mail) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		
+
 		User user = null;
 		Criteria criteria = null;
 		try {
-			criteria = session.createCriteria(User.class);  
+			criteria = session.createCriteria(User.class);
 			user = (User) criteria.add(Restrictions.eq("email", mail)).uniqueResult();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -96,13 +97,27 @@ public class UserDaoImpl implements UserDao {
 		return user;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Transactional
 	@Override
 	public List<User> getUsers() {
-		//Session session = sessionFactory.openSession();
-		//Transaction tx = session.beginTransaction();
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
 
-		// TODO Auto-generated method stub
-		return null;
+		List<User> users = null;
+		Criteria criteria = null;
+
+		try {
+			criteria = session.createCriteria(User.class);
+			users = (List<User>) criteria.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				tx.commit();
+				session.close();
+			}
+		}
+		return users;
 	}
 }

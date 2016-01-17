@@ -2,7 +2,7 @@
  * 
  */
 package com.api01.bean;
-
+ 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -25,7 +25,7 @@ public class Idea {
 	@Id
 	@GeneratedValue
 	@Column(name = "idea_id")
-	private Integer id;
+	private Integer idea_id;
 
 	@Column(name = "description",nullable=false)
 	private String description;
@@ -60,17 +60,17 @@ public class Idea {
 	}
 
 	/**
-	 * @return the id
+	 * @return the idea_id
 	 */
-	public Integer getId() {
-		return id;
+	public Integer getIdea_id() {
+		return idea_id;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param idea_id the idea_id to set
 	 */
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdea_id(Integer idea_id) {
+		this.idea_id = idea_id;
 	}
 
 	/**
@@ -156,5 +156,6 @@ public class Idea {
 	public void setLong_summary(String long_summary) {
 		this.long_summary = long_summary;
 	}
+
 
 	}

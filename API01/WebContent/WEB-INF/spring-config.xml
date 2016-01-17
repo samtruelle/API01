@@ -24,11 +24,17 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.api01.bean.User</value>
+				<value>com.api01.bean.Idea</value>
+				<value>com.api01.bean.UpVote</value>
+				<value>com.api01.bean.DetailedScore</value>
+				<value>com.api01.bean.Donation</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
 			</props>
 		</property>
 	</bean>
@@ -51,6 +57,11 @@
 		</property>
 	</bean>
 	<bean id="userdaoimpl" class="com.api01.dao.UserDaoImpl" />
+	<bean id="ideadaoimpl" class="com.api01.dao.IdeaDaoImpl" />
+	<bean id="upvotedaoimpl" class="com.api01.dao.UpVoteDaoImpl" />
+	<bean id="detailedscoredaoimpl" class="com.api01.dao.DetailedScoreDaoImpl" />
+	<bean id="donationdaoimpl" class="com.api01.dao.DonationDaoImpl" />
+	
 </beans>
 
 

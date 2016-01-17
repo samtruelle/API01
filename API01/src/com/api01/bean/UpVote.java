@@ -15,7 +15,7 @@ import javax.persistence.GeneratedValue;
 /**
  * @author samuel
  *
- */
+ */ 
 @Entity
 @Table
 public class UpVote {
@@ -23,26 +23,25 @@ public class UpVote {
 	@GeneratedValue
 	@Column(name="up_id",nullable=false)
 	private Integer up_id;
+	
 	@Column(name="value",nullable=false)
 	private Integer value;
 	
 	@ManyToOne
-	@JoinColumn(name="user_id")
-	@Column(name="user",nullable=false)
-	private Integer user;
-	
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user;
+
 	@ManyToOne
-	@JoinColumn(name="idea_id")
-	@Column(name="idea",nullable=false)
-	private Integer idea;
-	
+	@JoinColumn(name = "idea_id", nullable = false)
+	private Idea idea;
+
 	public UpVote() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public UpVote(Integer value, Integer user, Integer idea) {
+	public UpVote(Integer value, User user, Idea idea) {
 		super();
-		this.value= value;
+		this.value = value;
 		this.user = user;
 		this.idea = idea;
 	}
@@ -78,14 +77,14 @@ public class UpVote {
 	/**
 	 * @return the user
 	 */
-	public Integer getUser() {
+	public User getUser() {
 		return user;
 	}
 
 	/**
 	 * @param user the user to set
 	 */
-	public void setuser(Integer user) {
+	public void setuser(User user) {
 		this.user = user;
 	}
 
@@ -93,7 +92,7 @@ public class UpVote {
 	/**
 	 * @return the user
 	 */
-	public Integer getIdea() {
+	public Idea getIdea() {
 		return idea;
 	}
 	
@@ -101,7 +100,7 @@ public class UpVote {
 	/**
 	 * @param impact the impact to set
 	 */
-	public void setIdea(Integer idea) {
+	public void setIdea(Idea idea) {
 		this.idea = idea;
 	}
 }

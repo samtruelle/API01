@@ -1,11 +1,11 @@
-drop table user;
+--drop table user;
 create table if not exists user( 
 	user_id integer NOT NULL AUTO_INCREMENT,
 	password varchar(50) NOT NULL,
 	email varchar(50) NOT NULL,
 	first_name varchar(30) NOT NULL,
 	last_name varchar(60) NOT NULL,
-	adresse varchar(60),
+	adress varchar(60),
 	telephone integer,
 	creation_date timestamp,
 	account_blocked integer,
@@ -13,9 +13,9 @@ create table if not exists user(
 	PRIMARY KEY (user_id),
 	UNIQUE KEY email (email)
 );
-drop table idea;
+--drop table idea;
 create table if not exists idea(
- idea_id integer NOT NULL AUTO_INCREMENT,
+ idea_id integer AUTO_INCREMENT,
  description text NOT NULL,
  application text NOT NULL,
  targeted_market text NOT NULL,
@@ -25,7 +25,7 @@ create table if not exists idea(
  PRIMARY KEY (idea_id) 
  );
 
-drop table detailed_score;
+--drop table detailed_score;
 create table if not exists detailed_score(
  detailed_score integer NOT NULL AUTO_INCREMENT,
  feasability integer,
@@ -36,7 +36,7 @@ create table if not exists detailed_score(
  FOREIGN KEY (idea_id) REFERENCES idea(idea_id)
 );
 
-drop table up_score;
+--drop table up_score;
 create table if not exists up_score(
 up_id integer NOT NULL AUTO_INCREMENT,
 value integer NOT NULL,

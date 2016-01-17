@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-public interface UserDao {
+public interface IUserDao {
 	@Transactional
 	int addUser(User u);
 	
