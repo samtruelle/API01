@@ -18,10 +18,10 @@ import com.api01.bean.User;
 public interface IDetailedScoreDao {
 
 	@Transactional
-	int addDetailedScore(DetailedScore ds);
+	Integer addDetailedScore(DetailedScore ds);
 
 	@Transactional
-	int updateDetailedScore(DetailedScore ds);
+	Integer updateDetailedScore(DetailedScore ds);
 
 	@Transactional
 	void removeDetailedScore(DetailedScore ds);

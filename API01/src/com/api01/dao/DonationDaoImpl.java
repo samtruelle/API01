@@ -33,7 +33,7 @@ public class DonationDaoImpl implements IDonationDao {
 	 * @see com.api01.dao.IDonation#addDonation(com.api01.bean.Donation)
 	 */
 	@Override
-	public int addDonation(Donation d) {
+	public Integer addDonation(Donation d) {
 		Serializable id;
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
@@ -58,7 +58,7 @@ public class DonationDaoImpl implements IDonationDao {
 	 * @see com.api01.dao.IDonation#upDateDonation(com.api01.bean.Donation)
 	 */
 	@Override
-	public int upDateDonation(Donation d) {
+	public Integer upDateDonation(Donation d) {
 		Serializable id;
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();

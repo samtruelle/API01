@@ -7,10 +7,10 @@ import javax.transaction.Transactional;
 
 public interface IUserDao {
 	@Transactional
-	int addUser(User u);
+	Integer addUser(User u);
 	
 	@Transactional
-	int updateUser(User u);
+	Integer updateUser(User u);
 	
 	@Transactional
 	void removerUser(User u);

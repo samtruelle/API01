@@ -34,7 +34,7 @@ public class DetailedScoreDaoImpl implements IDetailedScoreDao {
 	 * DetailedScore)
 	 */
 	@Override
-	public int addDetailedScore(DetailedScore ds) {
+	public Integer addDetailedScore(DetailedScore ds) {
 		Serializable id;
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
@@ -60,7 +60,7 @@ public class DetailedScoreDaoImpl implements IDetailedScoreDao {
 	 * DetailedScore)
 	 */
 	@Override
-	public int updateDetailedScore(DetailedScore ds) {
+	public Integer updateDetailedScore(DetailedScore ds) {
 		Serializable id;
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();

@@ -33,7 +33,7 @@ public class UpVoteDaoImpl implements IUpvoteDao {
 	 * @see com.api01.dao.IUpvote#addUpVote(com.api01.bean.UpVote)
 	 */
 	@Override
-	public int addUpVote(UpVote uv) {
+	public Integer addUpVote(UpVote uv) {
 		Serializable id;
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
@@ -58,7 +58,7 @@ public class UpVoteDaoImpl implements IUpvoteDao {
 	 * @see com.api01.dao.IUpvote#updateUpVote(com.api01.bean.UpVote)
 	 */
 	@Override
-	public int updateUpVote(UpVote uv) {
+	public Integer updateUpVote(UpVote uv) {
 		Serializable id;
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
@@ -200,6 +200,28 @@ public class UpVoteDaoImpl implements IUpvoteDao {
 			}
 		}
 		return upVotes;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<UpVote> getUpVotesByUserByIdea(User u, Idea i) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+
+		Criteria criteria = null;
+		List<UpVote> upVote = null;
+		try {
+			criteria = session.createCriteria(UpVote.class);
+			upVote = (List<UpVote>) criteria.add(Restrictions.eq("user", u)).add(Restrictions.eq("idea", i)).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				tx.commit();
+				session.close();
+			}
+		}
+		return upVote;
 	}
 
 }

@@ -22,7 +22,7 @@ public class UserDaoImpl implements IUserDao {
 
 	@Transactional
 	@Override
-	public int addUser(User u) {
+	public Integer addUser(User u) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.saveOrUpdate(u);
@@ -30,19 +30,19 @@ public class UserDaoImpl implements IUserDao {
 		Serializable id = session.getIdentifier(u);
 		u.setUser_id((Integer)id);
 		session.close();
-		return (int) id;
+		return (Integer) id;
 	}
 
 	@Transactional
 	@Override
-	public int updateUser(User u) {
+	public Integer updateUser(User u) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.saveOrUpdate(u);
 		tx.commit();
 		Serializable id = session.getIdentifier(u);
 		session.close();
-		return (int) id;
+		return (Integer) id;
 	}
 
 	@Transactional

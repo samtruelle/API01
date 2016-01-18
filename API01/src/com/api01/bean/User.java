@@ -32,16 +32,16 @@ public class User {
 	private String adress;
 
 	@Column(name = "telephone")
-	private int telephone;
+	private Integer telephone;
 
 	@Column(name = "creation_date")
 	private Date creationDate;
 
 	@Column(name = "account_blocked")
-	private int account_blocked;
+	private Integer account_blocked;
 
 	@Column(name = "admin")
-	private int admin;
+	private Integer admin;
 
 	public User() {
 	};
@@ -147,14 +147,14 @@ public class User {
 	/**
 	 * @return the telephone
 	 */
-	public int getTelephone() {
+	public Integer getTelephone() {
 		return telephone;
 	}
 
 	/**
 	 * @param telephone the telephone to set
 	 */
-	public void setTelephone(int telephone) {
+	public void setTelephone(Integer telephone) {
 		this.telephone = telephone;
 	}
 
@@ -175,28 +175,28 @@ public class User {
 	/**
 	 * @return the account_blocked
 	 */
-	public int getAccount_blocked() {
+	public Integer getAccount_blocked() {
 		return account_blocked;
 	}
 
 	/**
 	 * @param account_blocked the account_blocked to set
 	 */
-	public void setAccount_blocked(int account_blocked) {
+	public void setAccount_blocked(Integer account_blocked) {
 		this.account_blocked = account_blocked;
 	}
 
 	/**
 	 * @return the admin
 	 */
-	public int getAdmin() {
+	public Integer getAdmin() {
 		return admin;
 	}
 
 	/**
 	 * @param admin the admin to set
 	 */
-	public void setAdmin(int admin) {
+	public void setAdmin(Integer admin) {
 		this.admin = admin;
 	}
 	

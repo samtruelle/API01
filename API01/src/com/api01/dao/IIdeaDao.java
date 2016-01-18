@@ -4,6 +4,7 @@
 package com.api01.dao;
 
 import com.api01.bean.Idea;
+import com.api01.bean.UpVote;
 import com.api01.bean.User;
 
 import java.util.List;
@@ -17,10 +18,10 @@ import javax.transaction.Transactional;
 public interface IIdeaDao {
 
 	@Transactional
-	int addIdea(Idea i);
+	Integer addIdea(Idea i);
 	
 	@Transactional
-	int updateIdea(Idea i);
+	Integer updateIdea(Idea i);
 	
 	@Transactional
 	void removerIdea(Idea u);
@@ -30,6 +31,12 @@ public interface IIdeaDao {
 	
 	@Transactional
 	List<Idea> getIdeaByUser(User u);
+	
+	@Transactional
+	List<UpVote> getLikes(Idea i);
+	
+	@Transactional
+	List<UpVote> getDislikes(Idea i);
 	
 	@Transactional
 	List<Idea> getIdeas();
