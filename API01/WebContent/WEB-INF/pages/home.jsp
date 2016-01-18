@@ -5,7 +5,10 @@
 <title>Home</title>
 </head>
 <body>
-	<jsp:include page="navbar.jsp" />	
+	<jsp:include page="navbar.jsp" />
+	<div id="warning">
+		${message}<br/>	
+	</div>	
 	Welcome to the API01 project, you are not logged ->
 	<a href="login.htm" class="btn btn-primary">login</a>
 	Or create an account ->

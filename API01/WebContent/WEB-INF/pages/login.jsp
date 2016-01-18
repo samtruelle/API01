@@ -5,7 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>View account</title>
-<link href="resources/css/app.css" rel="stylesheet" type="text/css"/> 
 </head>
 <body>
 	<%@include file="/WEB-INF/pages/navbar.jsp" %>	

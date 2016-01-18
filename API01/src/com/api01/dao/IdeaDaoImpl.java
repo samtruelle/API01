@@ -60,7 +60,7 @@ public class IdeaDaoImpl implements IIdeaDao {
 	@Override
 	public int updateIdea(Idea i) {
 		Session session = sessionFactory.openSession();
-		// Transaction tx = session.beginTransaction();
+		Transaction tx = session.beginTransaction();
 
 		Serializable id = 0;
 
@@ -69,7 +69,7 @@ public class IdeaDaoImpl implements IIdeaDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			// tx.commit();
+			tx.commit();
 			id = session.getIdentifier(i);
 			session.close();
 		}

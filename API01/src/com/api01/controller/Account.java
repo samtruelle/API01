@@ -33,7 +33,7 @@ public class Account {
 	public ModelAndView editProfile(HttpServletRequest request){		
 		User user = userdaoimpl.getUserByMail((String)request.getSession().getAttribute("login"));
 		if(user == null){
-			return new ModelAndView("redirect:/home");
+			return new ModelAndView("redirect:/home", "message", "User doesn't exist");
 		}else{			
 			return new ModelAndView("editAccount", "command", user);
 		}
@@ -42,7 +42,7 @@ public class Account {
 	@RequestMapping(value = "/editAccount", method = RequestMethod.POST)	
 	public ModelAndView PersistEditProfile(HttpServletRequest request,@ModelAttribute("command")User user){				
 		if(user == null){
-			return new ModelAndView("redirect:/home");
+			return new ModelAndView("redirect:/home","message","Edition succeded");
 		}else{		
 			userdaoimpl.updateUser(user);
 			return new ModelAndView("redirect:/viewAccount");

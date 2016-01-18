@@ -40,11 +40,15 @@ public class Login {
 			mav.addObject("message", "The user doesn't exist !");
 			return mav;			
 		}else if(BCrypt.checkpw(password, u.getPassword())){
-			request.getSession().setAttribute("admin",u.getAdmin());
-			request.getSession().setAttribute("login",u.getEmail());
-			request.getSession().setAttribute("first_name",u.getFirstName());
-			request.getSession().setAttribute("last_name",u.getLastName());
-			return new ModelAndView("redirect:/home");
+			if(u.getAccount_blocked() == 1){
+				return new ModelAndView("redirect/home", "message", "your accout has been blocked for many reasons.");
+			}else{
+				request.getSession().setAttribute("admin",u.getAdmin());
+				request.getSession().setAttribute("login",u.getEmail());
+				request.getSession().setAttribute("first_name",u.getFirstName());
+				request.getSession().setAttribute("last_name",u.getLastName());
+				return new ModelAndView("redirect:/home");
+			}			
 		}else{
 			mav = new ModelAndView("login");
 			mav.addObject("message", "Credencials failure, please try again.");

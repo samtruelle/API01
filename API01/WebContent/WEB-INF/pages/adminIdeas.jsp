@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Users (admin)</title>
+<title>Ideas (admin)</title>
 </head>
 <body>
 	<%@include file="/WEB-INF/pages/navbar.jsp"%>
@@ -13,71 +13,65 @@
 		<div id="warning">
 			${message}
 		</div>
-		<a href="adminCreateUser" class="btn btn-success"><span cass="glyphicon glyphicon-plus"></span>Create an user</a>
+		<a href="adminCreateIdea" class="btn btn-success"><span cass="glyphicon glyphicon-plus"></span>Create an idea</a>
 		<table class="table table-hover table-striped">
 			<thead>
 				<tr>
 					<td>
-						Email (login)
+						Description
 					</td>
 					<td>
-						First name
+						Application
 					</td>
 					<td>
-						Last name
+						Targeted market
 					</td>
 					<td>
-						Adress
+						Fund
 					</td>
 					<td>
-						Telephone
+						State
+					</td>
+					<td>	
+						Long summary
 					</td>
 					<td>
-						Account blocked
-					</td>
-					<td>
-						Admin
-					</td>
-					<td>
-						Delete
-					</td>
-					<td>
-						Edit
-					</td>					
+						User
+					</td>								
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${users}" var="user">								
-					<tr class="userCard">					
-						<td class="eamil">
-							${user.email}
+				<c:forEach items="${ideas}" var="idea">								
+					<tr class="ideaCard">					
+						<td class="description">
+							${idea.description}
 						</td>	
-						<td class="firstName">
-							${user.firstName}
+						<td class="application">
+							${idea.application}
 						</td>
-						<td class="lastName">
-							${user.lastName}
+						<td class="targeted_market">
+							${idea.targeted_market}
 						</td>
-						<td class="adress">
-							${user.adress}
+						<td class="fund">
+							${idea.fund}
 						</td>		
-						<td class="telephone">
-							${user.telephone}
+						<td class="state">
+							${idea.state}
 						</td>
-						<td class="accountBlocked">
-							${user.account_blocked}
+						<td class="long_summary">
+							${idea.long_summary}
 						</td>
-						<td class="admin">
-							${user.admin}
+						<td class="user">
+							${idea.user.email}
 						</td>
 						<td>
-							<a href="adminDeleteUser?userId=${user.user_id}" data-confirm="Do you realy want to delete the user ?" class="btn btn-danger">
+							<a href="adminDeleteIdea?ideaId=${idea.idea_id}" data-confirm="Do you realy want to delete the idea ?" class="btn btn-danger">
 								<span class="glyphicon glyphicon-remove"></span>								
 								delete
 							</a>							
 						</td>
 						<td>
-							<a href="adminEditUser?userId=${user.user_id}" class="btn btn-warning">
+							<a href="adminEditIdea?ideaId=${idea.idea_id}" class="btn btn-warning">
 								<span class="glyphicon glyphicon-edit"></span>
 								edit
 							</a>
