@@ -17,10 +17,10 @@ import com.api01.bean.User;
  */
 public interface IUpvoteDao {
 	@Transactional
-	int addUpVote(UpVote uv);
+	Integer addUpVote(UpVote uv);
 
 	@Transactional
-	int updateUpVote(UpVote uv);
+	Integer updateUpVote(UpVote uv);
 
 	@Transactional
 	void removeUpVote(UpVote uv);
@@ -33,6 +33,9 @@ public interface IUpvoteDao {
 
 	@Transactional
 	List<UpVote> getUpVotesByUser(User u);
+
+	@Transactional
+	List<UpVote> getUpVotesByUserByIdea(User u, Idea i);
 
 	@Transactional
 	List<UpVote> getUpVotes();

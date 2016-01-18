@@ -1,9 +1,11 @@
+/**
+ * 
+ */
 package com.api01.dao;
 
 import java.io.Serializable;
 import java.util.List;
 
-import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
@@ -13,15 +15,15 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.api01.bean.Comment;
 import com.api01.bean.Idea;
-import com.api01.bean.UpVote;
 import com.api01.bean.User;
 
 /**
  * @author samuel
  *
  */
-public class IdeaDaoImpl implements IIdeaDao {
+public class CommentDaoImpl implements ICommentDao {
 
 	@Autowired
 	SessionFactory sessionFactory;
@@ -29,23 +31,22 @@ public class IdeaDaoImpl implements IIdeaDao {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.api01.dao.IIdeaDao#addIdea(com.api01.bean.Idea)
+	 * @see com.api01.dao.IComment#addComment(com.api01.bean.Comment)
 	 */
-	@Transactional
 	@Override
-	public Integer addIdea(Idea i) {
+	public Integer addComment(Comment comm) {
 		Serializable id;
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 
 		try {
-			session.saveOrUpdate(i);
+			session.saveOrUpdate(comm);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			tx.commit();
-			id = session.getIdentifier(i);
-			i.setIdea_id((Integer) id);
+			id = session.getIdentifier(comm);
+			comm.setComment_id((Integer) id);
 			session.close();
 		}
 
@@ -55,23 +56,21 @@ public class IdeaDaoImpl implements IIdeaDao {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.api01.dao.IIdeaDao#updateIdea(com.api01.bean.Idea)
+	 * @see com.api01.dao.IComment#updateComment(com.api01.bean.Comment)
 	 */
-	@Transactional
 	@Override
-	public Integer updateIdea(Idea i) {
+	public Integer updateComment(Comment comm) {
+		Serializable id;
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 
-		Serializable id = 0;
-
 		try {
-			session.saveOrUpdate(i);
+			session.saveOrUpdate(comm);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			tx.commit();
-			id = session.getIdentifier(i);
+			id = session.getIdentifier(comm);
 			session.close();
 		}
 
@@ -81,16 +80,15 @@ public class IdeaDaoImpl implements IIdeaDao {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.api01.dao.IIdeaDao#removerIdea(com.api01.bean.Idea)
+	 * @see com.api01.dao.IComment#removeComment(com.api01.bean.Comment)
 	 */
-	@Transactional
 	@Override
-	public void removerIdea(Idea i) {
+	public void removeComment(Comment comm) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 
 		try {
-			session.delete(i);
+			session.delete(comm);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -102,17 +100,16 @@ public class IdeaDaoImpl implements IIdeaDao {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.api01.dao.IIdeaDao#getIdeaById(java.lang.Integer)
+	 * @see com.api01.dao.IComment#getCommentByComment__ID(java.lang.Integer)
 	 */
-	@Transactional
 	@Override
-	public Idea getIdeaById(Integer id) {
+	public Comment getCommentByComment__ID(Integer id) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		Idea idea = null;
+		Comment comment = null;
 		try {
-			idea = (Idea) session.get(Idea.class, id);
-			Hibernate.initialize(idea);
+			comment = (Comment) session.get(Comment.class, id);
+			Hibernate.initialize(comment);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -121,27 +118,25 @@ public class IdeaDaoImpl implements IIdeaDao {
 				session.close();
 			}
 		}
-		return idea;
+		return comment;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.api01.dao.IIdeaDao#getIdeas()
+	 * @see com.api01.dao.IComment#getCommentByIdea(com.api01.bean.Idea)
 	 */
 	@SuppressWarnings("unchecked")
-	@Transactional
 	@Override
-	public List<Idea> getIdeas() {
+	public List<Comment> getCommentByIdea(Idea i) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 
-		List<Idea> ideas = null;
 		Criteria criteria = null;
-
+		List<Comment> comments = null;
 		try {
-			criteria = session.createCriteria(Idea.class);
-			ideas = (List<Idea>) criteria.list();
+			criteria = session.createCriteria(Comment.class);
+			comments = (List<Comment>) criteria.add(Restrictions.eq("idea", i)).list();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -150,20 +145,25 @@ public class IdeaDaoImpl implements IIdeaDao {
 				session.close();
 			}
 		}
-		return ideas;
+		return comments;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.api01.dao.IComment#getCommentByUser(com.api01.bean.User)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Idea> getIdeaByUser(User u) {
+	public List<Comment> getCommentByUser(User u) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 
 		Criteria criteria = null;
-		List<Idea> idea = null;
+		List<Comment> comments = null;
 		try {
-			criteria = session.createCriteria(Idea.class);
-			idea = (List<Idea>) criteria.add(Restrictions.eq("user", u)).list();
+			criteria = session.createCriteria(Comment.class);
+			comments = (List<Comment>) criteria.add(Restrictions.eq("user", u)).list();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -172,20 +172,26 @@ public class IdeaDaoImpl implements IIdeaDao {
 				session.close();
 			}
 		}
-		return idea;
+		return comments;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.api01.dao.IComment#getCommentByUserByIdea(com.api01.bean.User,
+	 * com.api01.bean.Idea)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<UpVote> getLikes(Idea i) {
+	public List<Comment> getCommentByUserByIdea(User u, Idea i) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 
 		Criteria criteria = null;
-		List<UpVote> likes= null;
+		List<Comment> comments = null;
 		try {
-			criteria = session.createCriteria(UpVote.class);
-			likes = (List<UpVote>) criteria.add(Restrictions.eq("idea", i)).list();
+			criteria = session.createCriteria(Comment.class);
+			comments = (List<Comment>) criteria.add(Restrictions.eq("user", u)).add(Restrictions.eq("idea", i)).list();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -194,20 +200,27 @@ public class IdeaDaoImpl implements IIdeaDao {
 				session.close();
 			}
 		}
-		return likes;
+		return comments;
+
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.api01.dao.IComment#getComments()
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<UpVote> getDislikes(Idea i) {
+	public List<Comment> getComments() {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 
+		List<Comment> comments = null;
 		Criteria criteria = null;
-		List<UpVote> dislikes= null;
+
 		try {
-			criteria = session.createCriteria(UpVote.class);
-			dislikes = (List<UpVote>) criteria.add(Restrictions.eq("idea", i)).list();
+			criteria = session.createCriteria(Comment.class);
+			comments = (List<Comment>) criteria.addOrder(org.hibernate.criterion.Order.desc("date")).list();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -216,7 +229,7 @@ public class IdeaDaoImpl implements IIdeaDao {
 				session.close();
 			}
 		}
-		return dislikes;
+		return comments;
 	}
 
 }

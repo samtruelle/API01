@@ -18,10 +18,10 @@ import com.api01.bean.User;
 public interface IDonationDao {
 	
 	@Transactional
-	int addDonation(Donation d);
+	Integer addDonation(Donation d);
 	
 	@Transactional
-	int upDateDonation(Donation d);
+	Integer upDateDonation(Donation d);
 	
 	@Transactional
 	void removeDonation(Donation d);
