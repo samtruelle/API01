@@ -25,7 +25,7 @@ public class Logout {
 		request.getSession().removeAttribute("first_name");
 		request.getSession().removeAttribute("last_name");
 		request.getSession().removeAttribute("admin");
-		request.getSession().removeAttribute("email");		
+		request.getSession().removeAttribute("login");		
 		return new ModelAndView("redirect:/home");
 	}
 }
