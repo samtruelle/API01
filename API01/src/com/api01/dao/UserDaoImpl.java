@@ -30,7 +30,7 @@ public class UserDaoImpl implements IUserDao {
 		Serializable id = session.getIdentifier(u);
 		u.setUser_id((Integer)id);
 		session.close();
-		return (Integer) id;
+		return (int) id;
 	}
 
 	@Transactional
@@ -42,7 +42,7 @@ public class UserDaoImpl implements IUserDao {
 		tx.commit();
 		Serializable id = session.getIdentifier(u);
 		session.close();
-		return (Integer) id;
+		return (int) id;
 	}
 
 	@Transactional

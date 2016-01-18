@@ -50,6 +50,16 @@ public class Home {
 		ideaDaoImpl.addIdea(i2);
 		ideaDaoImpl.addIdea(i3);
 		
+		u1.setAdress("testupdate");
+		userdaoimpl.updateUser(u1);
+		
+		i1.setApplication("testUpdate");
+		ideaDaoImpl.updateIdea(i1);
+		System.out.println(userdaoimpl.getUserById(u1.getUser_id()).getAdress());
+		
+		System.out.println(ideaDaoImpl.getIdeaById(i1.getIdea_id()).getApplication());
+
+		
 		System.out.println(ideaDaoImpl.getIdeaByUser(u1));
 		
 		UpVote uv1 = new UpVote(1, u1, i1);
