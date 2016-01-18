@@ -13,7 +13,12 @@
 		<div id="warning">
 			${message}<br/>	
 		</div>
-		<form:form role="form" method="POST" modelAttribut="command">						
+		<form:form role="form" method="POST" modelAttribut="command">
+			<div class="form-group">
+				<form:label path="title">Title:</form:label> <form:input type="text"
+				class="form-control" id="title" placeholder="Enter a title"
+					required="true" path="title"/>
+			</div>						
 			<div class="form-group">
 				<form:label path="description">description:</form:label>
 				<form:textarea class="form-control" id="description"

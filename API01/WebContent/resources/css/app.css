@@ -5,3 +5,24 @@
 #warning{
 	color:red;
 }
+.ideaTitle{
+    border-bottom: 1px solid grey;
+    text-align: center;
+    padding-bottom: 5px;
+    margin-top: 5px;
+}
+.state{
+	border-bottom: 1px solid grey;
+    padding-bottom: 5px;
+    margin-top: 5px;
+}
+#upDownScore{
+    padding-bottom: 5px;
+    margin-top: 5px;
+}
+
+#managementButtons{
+	border-bottom: 1px solid grey;
+	padding-bottom: 5px;
+    margin-top: 5px;
+}

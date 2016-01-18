@@ -158,7 +158,8 @@ public class Admin {
 		request.setAttribute("idea", null);
 		ideaPersisted.setApplication(idea.getApplication());
 		ideaPersisted.setTargeted_market(idea.getTargeted_market());
-		ideaPersisted.setDescription(idea.getDescription());	
+		ideaPersisted.setDescription(idea.getDescription());
+		ideaPersisted.setTitle(idea.getTitle());
 		int i = ideadaoimpl.updateIdea(ideaPersisted);
 		if(i == 0){
 			return new ModelAndView("redirect:/home", "message","An error occured, idea not created");

@@ -29,6 +29,9 @@ public class Idea {
 	@Column(name = "idea_id")
 	private Integer idea_id;
 
+	@Column(name = "title", nullable=false)
+	private String title;
+
 	@Column(name = "description",nullable=false)
 	private String description;
 
@@ -68,9 +71,10 @@ public class Idea {
 	public Idea() {
 	};
 
-	public Idea(String description, String application, String targeted_market, 
+	public Idea(String title, String description, String application, String targeted_market, 
 			Double fund, EnumState state, String long_summary, User u) {
 		super();
+		this.title = title;
 		this.description = description;
 		this.application = application;
 		this.targeted_market = targeted_market;
@@ -92,6 +96,14 @@ public class Idea {
 	 */
 	public void setIdea_id(Integer idea_id) {
 		this.idea_id = idea_id;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	/**

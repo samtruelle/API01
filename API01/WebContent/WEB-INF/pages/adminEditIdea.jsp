@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Create a new user (admin)</title>
+<title>Create a new idea (admin)</title>
 </head> 
 <body>
 	<%@include file="/WEB-INF/pages/navbar.jsp"%>

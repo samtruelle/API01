@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Create a new idea</title>
+<title>Edit an idea</title>
 </head> 
 <body>
 	<%@include file="/WEB-INF/pages/navbar.jsp"%>
@@ -13,12 +13,31 @@
 		<div id="warning">
 			${message}<br/>	
 		</div>
-		<form:form role="form" method="POST" modelAttribut="command">	
+		<form:form role="form" method="POST" modelAttribut="command">
+		<div class="form-group" hidden>
+				<form:label path="idea_id"></form:label> <form:input type="text"
+				class="form-control" path="idea_id"/>
+			</div>			
+			<div class="form-group" hidden>
+				<form:label path="fund"></form:label> <form:input type="text"
+					class="form-control" id="fund"
+					required="true" path="fund"/>
+			</div>
+			<div class="form-group" hidden>
+				<form:label path="long_summary"></form:label> <form:input type="text"
+					class="form-control" id="long_summary"
+					path="long_summary"/>
+			</div>
+			<div class="form-group" hidden>
+				<form:label path="state"></form:label> <form:input type="text"
+					class="form-control" id="state"
+					required="true" path="state"/>
+			</div>
 			<div class="form-group">
 				<form:label path="title">Title:</form:label> <form:input type="text"
 				class="form-control" id="title" placeholder="Enter a title"
 					required="true" path="title"/>
-			</div>						
+			</div>							
 			<div class="form-group">
 				<form:label path="description">description:</form:label>
 				<form:textarea class="form-control" id="description"
@@ -33,7 +52,7 @@
 				<form:label path="targeted_market">Targeted market:</form:label> <form:input type="text"
 					class="form-control" id="targeted_market" placeholder="Targeted market"
 					required="true" path="targeted_market"/>
-			</div>
+			</div>			
 			<button type="submit" class="btn btn-success">Submit</button>
 		</form:form>
 	</div>
