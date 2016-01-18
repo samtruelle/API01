@@ -15,7 +15,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/api01_db" />
 		<property name="username" value="root" />
-		<property name="password" value="Se3MaCa9Sa" />
+		<property name="password" value="root" />
 	</bean>
 
 	<bean id="sessionFactory"
@@ -30,13 +30,7 @@
 				<value>com.api01.bean.Donation</value>
 				<value>com.api01.bean.Comment</value>
 			</list>
-		</property>
-		 <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-                <prop key="hibernate.show_sql">false</prop>
-            </props>
-        </property>
+		</property>	
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
