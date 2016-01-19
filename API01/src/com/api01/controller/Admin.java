@@ -1,7 +1,11 @@
 package com.api01.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.xml.ws.Response;
+
+import org.apache.catalina.connector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
@@ -10,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.api01.dao.UserDaoImpl;
@@ -24,6 +29,7 @@ public class Admin {
 	UserDaoImpl	userdaoimpl;
 	@Autowired
 	IdeaDaoImpl	ideadaoimpl;
+	
 	
 	@RequestMapping("/admin")	
 	public ModelAndView admin(){
@@ -158,8 +164,7 @@ public class Admin {
 		request.setAttribute("idea", null);
 		ideaPersisted.setApplication(idea.getApplication());
 		ideaPersisted.setTargeted_market(idea.getTargeted_market());
-		ideaPersisted.setDescription(idea.getDescription());
-		ideaPersisted.setTitle(idea.getTitle());
+		ideaPersisted.setDescription(idea.getDescription());	
 		int i = ideadaoimpl.updateIdea(ideaPersisted);
 		if(i == 0){
 			return new ModelAndView("redirect:/home", "message","An error occured, idea not created");
@@ -167,5 +172,26 @@ public class Admin {
 		else{		
 			return new ModelAndView("redirect:/adminIdeas");	
 		}	
+	}
+	
+	
+	@RequestMapping(value="/ajaxresult",method = RequestMethod.GET)
+	public @ResponseBody
+	String getResult(HttpServletRequest request){
+		String q=request.getParameter("query");
+		System.out.println(q);
+		return "test";
+	}
+	
+	
+	@RequestMapping(value="/adminComments",method = RequestMethod.GET)
+	public ModelAndView searchIdea(HttpServletRequest request) {
+		String q=request.getParameter("query");
+		System.out.println(request.getParameter("query"));
+		ArrayList<Idea> ideas=ideadaoimpl.getIdeaTitle(q);
+		System.out.println(q);
+		System.out.println(ideas);
+		
+		return new ModelAndView("adminComments");
 	}
 }

@@ -10,6 +10,7 @@
 	<%@include file="/WEB-INF/pages/navbar.jsp" %>	
 	<a href="adminUsers" class="btn btn-primary">Users</a>
 	<a href="adminIdeas" class="btn btn-primary">Idea</a>
-	<a href="adminComments" class="btn btn-primary">Comment</a>	
+	<a href="ajax" class="btn btn-primary">ajax test</a>	
+
 </body>
 </html>
