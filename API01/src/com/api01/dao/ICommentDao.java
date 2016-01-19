@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 
 import com.api01.bean.Comment;
 import com.api01.bean.Idea;
+import com.api01.bean.Idea.EnumState;
 import com.api01.bean.User;
 
 /**
@@ -36,6 +37,12 @@ public interface ICommentDao {
 
 	@Transactional
 	List<Comment> getCommentByUserByIdea(User u, Idea i);
+
+	@Transactional
+	List<Comment> getCommentByUserByIdea_state(User u, EnumState i);
+	
+	@Transactional
+	List<Comment> getCommentByIdea_state(EnumState en);
 
 	@Transactional
 	List<Comment> getComments();

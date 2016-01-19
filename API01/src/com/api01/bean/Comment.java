@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import com.api01.bean.Idea.EnumState;
 
 import javax.persistence.GeneratedValue;
@@ -33,10 +36,12 @@ public class Comment {
 	private String text;
 
 	@ManyToOne
+	@Cascade(CascadeType.DELETE)
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
 	@ManyToOne
+	@Cascade(CascadeType.DELETE)
 	@JoinColumn(name = "idea_id", nullable = false)
 	private Idea idea;
 

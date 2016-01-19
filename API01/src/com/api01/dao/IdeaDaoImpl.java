@@ -1,6 +1,7 @@
 package com.api01.dao;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -14,6 +15,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.api01.bean.Idea;
+import com.api01.bean.Idea.EnumState;
 import com.api01.bean.UpVote;
 import com.api01.bean.User;
 
@@ -217,6 +219,50 @@ public class IdeaDaoImpl implements IIdeaDao {
 			}
 		}
 		return dislikes;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public ArrayList<Idea> getIdeaTitle(String title) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+
+		Criteria criteria = null;
+		ArrayList<Idea> ideas= null;
+		try {
+			criteria = session.createCriteria(Idea.class);
+			ideas = (ArrayList<Idea>) criteria.add(Restrictions.like("title", title + "%")).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				tx.commit();
+				session.close();
+			}
+		}
+		return ideas;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Idea> getIdeasByState(EnumState i) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+
+		Criteria criteria = null;
+		List<Idea> ideas = null;
+		try {
+			criteria = session.createCriteria(Idea.class);
+			ideas = (List<Idea>) criteria.add(Restrictions.eq("state", i)).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				tx.commit();
+				session.close();
+			}
+		}
+		return ideas;
 	}
 
 }

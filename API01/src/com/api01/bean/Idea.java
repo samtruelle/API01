@@ -9,6 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import javax.persistence.GeneratedValue;
 
 /**
@@ -51,6 +55,7 @@ public class Idea {
 	private String long_summary;
 	
 	@ManyToOne
+	@Cascade(CascadeType.DELETE)
 	@JoinColumn(name="user",nullable=false)
 	private User user;
 

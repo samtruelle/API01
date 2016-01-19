@@ -4,9 +4,11 @@
 package com.api01.dao;
 
 import com.api01.bean.Idea;
+import com.api01.bean.Idea.EnumState;
 import com.api01.bean.UpVote;
 import com.api01.bean.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -40,5 +42,11 @@ public interface IIdeaDao {
 	
 	@Transactional
 	List<Idea> getIdeas();
+	
+	@Transactional
+	ArrayList<Idea> getIdeaTitle(String title);
+	
+	@Transactional
+	List<Idea> getIdeasByState(EnumState i);
 
 }

@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import javax.persistence.GeneratedValue;
 
 /**
@@ -34,10 +37,12 @@ public class DetailedScore {
 	private Integer impact;
 
 	@ManyToOne
+	@Cascade(CascadeType.DELETE)
 	@JoinColumn(name = "idea_id",nullable=false)
 	private Idea idea;
 	
 	@ManyToOne
+	@Cascade(CascadeType.DELETE)
 	@JoinColumn(name="user_id",nullable=false)
 	private User user;
 

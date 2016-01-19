@@ -6,7 +6,6 @@ package com.api01.dao;
 import java.io.Serializable;
 import java.util.List;
 
-
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
@@ -17,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.api01.bean.Comment;
 import com.api01.bean.Idea;
+import com.api01.bean.Idea.EnumState;
 import com.api01.bean.User;
 
 /**
@@ -221,6 +221,50 @@ public class CommentDaoImpl implements ICommentDao {
 		try {
 			criteria = session.createCriteria(Comment.class);
 			comments = (List<Comment>) criteria.addOrder(org.hibernate.criterion.Order.desc("date")).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				tx.commit();
+				session.close();
+			}
+		}
+		return comments;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Comment> getCommentByUserByIdea_state(User u, EnumState i) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+
+		Criteria criteria = null;
+		List<Comment> comments = null;
+		try {
+			criteria = session.createCriteria(Comment.class);
+			comments = (List<Comment>) criteria.add(Restrictions.eq("user", u)).add(Restrictions.eq("idea_state", i)).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				tx.commit();
+				session.close();
+			}
+		}
+		return comments;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Comment> getCommentByIdea_state(EnumState i) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+
+		Criteria criteria = null;
+		List<Comment> comments = null;
+		try {
+			criteria = session.createCriteria(Comment.class);
+			comments = (List<Comment>) criteria.add(Restrictions.eq("idea_state", i)).list();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

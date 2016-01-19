@@ -41,7 +41,7 @@ public class Register {
 				user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
 				java.util.Date d = new java.util.Date();
 				user.setCreationDate(new java.sql.Date(d.getTime()));
-				user.setAdmin(0);
+				user.setAdmin(1);
 				user.setAccount_blocked(0);
 				userdaoimpl.addUser(user);
 				request.getSession().setAttribute("admin",user.getAdmin());
